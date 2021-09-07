@@ -13,15 +13,12 @@ import java.util.Optional;
 public class DbService {
 
     private final TaskRepository repository;
+
     public List<Task> getAllTasks() {
         return repository.findAll();
     }
-<<<<<<< HEAD
-    public Optional<Task> getTask(final Long id) {
-        return repository.findById(id);
-=======
-    public Task getTask(Long id) {
+
+    public Task getTask(final Long id) {
         return repository.findTaskById(id);
->>>>>>> 19.2. Added method getTask in DbService class
     }
 }

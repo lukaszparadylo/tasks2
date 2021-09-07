@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import java.util.Optional;
->>>>>>> 19.2. Added method getTask in DbService class
+
 
 @RestController
 @RequestMapping("/v1/task")
@@ -32,12 +30,8 @@ public class TaskController {
     }
     @RequestMapping(method = RequestMethod.GET, value = "getTask")
     public TaskDto getTask(Long taskId) {
-<<<<<<< HEAD
-        return new TaskDto(1L, "test title", "test_content");
-=======
-        Task task = service.getTask(2L);
+        Task task = service.getTask(1L);
         return taskMapper.mapToTaskDto(task);
->>>>>>> 19.2. Added method getTask in DbService class
     }
 
     public void deleteTask(Long taskId) {

@@ -16,7 +16,12 @@ public class DbService {
     public List<Task> getAllTasks() {
         return repository.findAll();
     }
+<<<<<<< HEAD
     public Optional<Task> getTask(final Long id) {
         return repository.findById(id);
+=======
+    public Task getTask(Long id) {
+        return repository.findTaskById(id);
+>>>>>>> 19.2. Added method getTask in DbService class
     }
 }

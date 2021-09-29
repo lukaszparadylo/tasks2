@@ -5,7 +5,7 @@ plugins {
 	//id 'war'
 }
 
-group = 'com.crud2'
+//group = 'com.crud2'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
@@ -22,7 +22,7 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok:1.18.20'
 	annotationProcessor 'org.projectlombok:lombok:1.18.20'
 	//runtimeOnly 'mysql:mysql-connector-java'
-	implementation group: 'org.lucee', name: 'postgresql', version: '8.3-606.jdbc4'
+	runtimeOnly 'org.lucee:postgresql:8.3-606.jdbc4'
 
 	testCompileOnly 'org.projectlombok:lombok:1.18.20'
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'

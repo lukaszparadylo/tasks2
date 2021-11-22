@@ -11,7 +11,6 @@ import java.net.URI;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-@NoArgsConstructor
 public class CreatedTrelloCard {
 
     public CreatedTrelloCard(String id, String name, String shortUrl) {

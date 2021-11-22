@@ -32,20 +32,20 @@ public class TrelloClient {
         URI url = UriComponentsBuilder.fromHttpUrl(trelloConfig.getTrelloApiEndpoint() + "/members/johndoe41135315/boards")
                 .queryParam("key", trelloConfig.getTrelloAppKey())
                 .queryParam("token", trelloConfig.getTrelloToken())
-                .queryParam("fields", trelloConfig.getTrelloName()+",id")
+                .queryParam("fields","name,id")
                 .queryParam("lists", "all")
                 .build()
                 .encode()
                 .toUri();
         try {
-            TrelloBoardDto[] boardsResponse = restTemplate.getForObject(url, TrelloBoardDto[].class);
-            return Arrays.asList(ofNullable(boardsResponse).orElse(new TrelloBoardDto[0]));
-            /*TrelloBoardDto[] boardsResponse = restTemplate.getForObject(url, TrelloBoardDto[].class);
-            return Optional.ofNullable(boardsResponse)
+            TrelloBoardDto[] bardsResponse = restTemplate.getForObject(url, TrelloBoardDto[].class);
+            return Optional.ofNullable(bardsResponse)
                     .map(Arrays::asList)
                     .orElse(Collections.emptyList())
                     .stream()
-                    .collect(Collectors.toList());*/
+                    .filter(p -> Objects.nonNull(p.getId()) && Objects.nonNull(p.getName()))
+                    .filter(p -> p.getName().contains("Kodilla"))
+                    .collect(Collectors.toList());
         } catch (RestClientException e) {
             LOGGER.error(e.getMessage(), e);
             return Collections.emptyList();
@@ -66,15 +66,3 @@ public class TrelloClient {
         return restTemplate.postForObject(url, null, CreatedTrelloCard.class);
     }
 }
-/*
-        return Optional.of(boardsResponse)
-                .map(Arrays::asList).stream()
-                .flatMap(o -> o.stream().map(n->n.name))
-                .orElse(Collections.emptyList());
-
-                return Optional.of(boardsResponse)
-                .map(Arrays::asList).stream()
-                .flatMap(n->n.stream())
-                .filter(m->!m.getId().isEmpty() && !m.getName().isEmpty())
-                .filter(p->p.getName().contains("Kodilla"))
-                .collect(Collections.emptyList())*/

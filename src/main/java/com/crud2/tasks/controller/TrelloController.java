@@ -17,14 +17,17 @@ import java.util.List;
 public class TrelloController{
 
     private final TrelloService trelloService;
+    private final TrelloClient trelloClient;
 
     @GetMapping("getTrelloBoards")
     public List<TrelloBoardDto> getTrelloBoards() {
         return trelloService.fetchTrelloBoards();
+        //return trelloClient.getTrelloBoards();
     }
 
     @PostMapping("createTrelloCard")
     public CreatedTrelloCard createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
         return trelloService.createTrelloCard(trelloCardDto);
+        //return trelloClient.createNewCard(trelloCardDto);
     }
 }

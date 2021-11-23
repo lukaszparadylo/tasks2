@@ -18,7 +18,7 @@ public class EmailServiceImpl  {
     public void sendEmail() {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setFrom("lukaszparadylo");
-        msg.setTo("lukaszparadylo@gmail.com");
+        msg.setTo("jannowak1407897@gmail.com");
         msg.setSubject("Testing from Spring Boot");
         msg.setText("Hello World \n Spring Boot Email");
 

@@ -5,6 +5,7 @@ import com.crud2.tasks.domain.TaskDto;
 import com.crud2.tasks.domain.TrelloCardDto;
 import com.crud2.tasks.mapper.TaskMapper;
 import com.crud2.tasks.service.DbService;
+import com.crud2.tasks.service.EmailServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -45,5 +46,10 @@ public class TaskController {
         Task task = taskMapper.mapToTask(taskDto);
         service.saveTask(task);
     }
-
+    @RequestMapping(method = RequestMethod.GET, value = "sendMail")
+    public String sendMail() {
+        EmailServiceImpl emailService = new EmailServiceImpl();
+        emailService.sendEmail();
+        return "Mail";
+    }
 }

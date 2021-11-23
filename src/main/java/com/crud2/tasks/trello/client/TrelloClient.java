@@ -4,6 +4,8 @@ import com.crud2.tasks.domain.CreatedTrelloCard;
 import com.crud2.tasks.domain.TrelloBoardDto;
 import com.crud2.tasks.domain.TrelloCardDto;
 import com.crud2.tasks.trello.client.config.TrelloConfig;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,20 +34,21 @@ public class TrelloClient {
         URI url = UriComponentsBuilder.fromHttpUrl(trelloConfig.getTrelloApiEndpoint() + "/members/johndoe41135315/boards")
                 .queryParam("key", trelloConfig.getTrelloAppKey())
                 .queryParam("token", trelloConfig.getTrelloToken())
-                .queryParam("fields","name,id")
+                .queryParam("fields", trelloConfig.getTrelloName()+",id")
                 .queryParam("lists", "all")
                 .build()
                 .encode()
                 .toUri();
         try {
-            TrelloBoardDto[] bardsResponse = restTemplate.getForObject(url, TrelloBoardDto[].class);
-            return Optional.ofNullable(bardsResponse)
+            TrelloBoardDto[] boardsResponse = restTemplate.getForObject(url, TrelloBoardDto[].class);
+            return Arrays.asList(ofNullable(boardsResponse).orElse(new TrelloBoardDto[0]));
+            /*eturn Optional.ofNullable(boardsResponse)
                     .map(Arrays::asList)
                     .orElse(Collections.emptyList())
                     .stream()
                     .filter(p -> Objects.nonNull(p.getId()) && Objects.nonNull(p.getName()))
                     .filter(p -> p.getName().contains("Kodilla"))
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toList());*/
         } catch (RestClientException e) {
             LOGGER.error(e.getMessage(), e);
             return Collections.emptyList();

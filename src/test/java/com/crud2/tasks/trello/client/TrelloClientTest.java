@@ -56,7 +56,7 @@ class TrelloClientTest {
         assertEquals("test_id", fetchedTrelloBoards.get(0).getId());
         assertEquals("test_board", fetchedTrelloBoards.get(0).getName());
         assertEquals(new ArrayList<>(), fetchedTrelloBoards.get(0).getLists());
-    }*/
+    }
     @Test
     public void shouldCreateCard() throws URISyntaxException {
         // Given
@@ -76,7 +76,7 @@ class TrelloClientTest {
         assertEquals("1", newCard.getId());
         assertEquals("test task", newCard.getName());
         assertEquals("http://test.com", newCard.getShortUrl());
-    }
+    }*/
     @Test
     public void shouldReturnEmptyList() throws URISyntaxException {
         //given

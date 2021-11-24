@@ -43,4 +43,10 @@ class SimpleEmailServiceTest {
         //Then
         verify(javaMailSender, times(1)).send(mailMessage);
     }
+    @Test
+    public void tasksOrTask(){
+        int size = 2;
+        String tasksOrTask = size > 1 ? "task":"Tasks";
+        System.out.println(tasksOrTask);
+    }
 }

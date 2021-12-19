@@ -1,8 +1,6 @@
 package com.crud2.tasks.controller;
-import com.crud2.tasks.domain.CreatedTrelloCard;
 import com.crud2.tasks.domain.Task;
 import com.crud2.tasks.domain.TaskDto;
-import com.crud2.tasks.domain.TrelloCardDto;
 import com.crud2.tasks.mapper.TaskMapper;
 import com.crud2.tasks.service.DbService;
 import com.crud2.tasks.service.EmailServiceImpl;

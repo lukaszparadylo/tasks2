@@ -1,6 +1,6 @@
 package com.crud2.tasks.service;
 
-import com.crud2.tasks.domain.CreatedTrelloCard;
+import com.crud2.tasks.domain.CreatedTrelloCardDto;
 import com.crud2.tasks.domain.Mail;
 import com.crud2.tasks.domain.TrelloBoardDto;
 import com.crud2.tasks.domain.TrelloCardDto;
@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -23,8 +22,8 @@ public class TrelloService {
     public List<TrelloBoardDto> fetchTrelloBoards() {
         return trelloClient.getTrelloBoards();
     }
-    public CreatedTrelloCard createTrelloCard(final TrelloCardDto trelloCardDto) {
-        CreatedTrelloCard newCard = trelloClient.createNewCard(trelloCardDto);
+    public CreatedTrelloCardDto createTrelloCard(final TrelloCardDto trelloCardDto) {
+        CreatedTrelloCardDto newCard = trelloClient.createNewCard(trelloCardDto);
         System.out.println("2");
         emailService.send(new Mail(
                 adminConfig.getAdminMail(),
@@ -32,7 +31,7 @@ public class TrelloService {
                 "New card: " + trelloCardDto.getName() + " has been created on your Trello account"
         ));
         System.out.println("3");
-        if(newCard==null) return new CreatedTrelloCard();
+        if(newCard==null) return new CreatedTrelloCardDto();
         else return newCard;
     }
 
